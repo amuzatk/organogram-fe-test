@@ -7,6 +7,7 @@ const Home: React.FC = () => {
   return (
     <TestDiv>
       <h1>Hello Kazmatics</h1>
+      <StyledDiv>This is starting Organogram FE test on CRUD operations</StyledDiv>
       <BBton>Styled Button</BBton>
 
       <StyledFlex fDirection='column'>
