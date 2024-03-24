@@ -5,10 +5,7 @@ import TokenForm from '@/component/tokenForm';
 import { RootState } from '@/redux/store';
 import { fetchQuestions } from '../redux/thunks/questionsThunks';
 import { useAppDispatch } from '../redux/store/hooks';
-import AddQuestionForm from '@/component/AddQuestionForm';
-import AddQuestion from '@/component/CreateQuestions';
-// import Question from '@/component/Questions';
-// import AddQuestion from '@/component/CreateQuestions';
+import CreateQuestionForm from '@/component/CreateQuestionForm';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -52,9 +49,7 @@ const Home = () => {
             <p>Loading...</p>
           ) : (
             <div>
-              {/* <Question id={''} question={''} options={[]} /> */}
-              <AddQuestion />
-              {/* <AddQuestionForm /> */}
+              <CreateQuestionForm />
               <h3>Questions Data:</h3>
               <ul>
                 {questions.map((question, questionIndex) => (
