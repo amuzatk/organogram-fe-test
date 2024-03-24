@@ -59,12 +59,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import TokenForm from '@/component/tokenForm';
 import { RootState } from '@/redux/store';
 import { fetchQuestions } from '../redux/thunks/questionsThunks';
+import { useAppDispatch } from '../redux/store/hooks';
+
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.reducer.token.value);
-  const questions = useSelector((state: RootState) => state.reducer.questions.questions);
-  const loading = useSelector((state: RootState) => state.reducer.questions.loading);
+  const dispatch = useAppDispatch();
+  // const token = useSelector((state: RootState) => state.reducer.token.value);
+  const token = useSelector((state: RootState) => state.token.value);
+  // const questions = useSelector((state: RootState) => state.reducer.questions.questions);
+  const questions = useSelector((state: RootState) => state.questions.questions);
+  // const loading = useSelector((state: RootState) => state.reducer.questions.loading);
+  const loading = useSelector((state: RootState) => state.questions.loading);
 
   useEffect(() => {
     if (token) {

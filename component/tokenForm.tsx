@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchToken } from '../redux/thunks/tokenThunks';
+import { useAppDispatch } from '../redux/store/hooks';
 
 const TokenForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
