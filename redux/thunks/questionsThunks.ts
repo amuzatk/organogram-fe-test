@@ -4,26 +4,25 @@ import axios from 'axios';
 import { setQuestions, setLoading, setError } from '../slices/questionSlice';
 import { RootState } from '../store';
 
-interface QuestionOption {
-  id: string;
-  question: string;
-  options: string[];
+interface ServerQuestionResponse {
+  [id: string]: {
+    question: string;
+    options: string[];
+  };
 }
-
-type QuestionResponse = Record<string, QuestionOption>;
 
 export const fetchQuestions = (): AppThunk => async (dispatch, getState) => {
   try {
     dispatch(setLoading(true));
     const token = (getState() as RootState).token.value;
-    const response = await axios.get<QuestionResponse>('https://qt.organogram.app/questions', {
+    const response = await axios.get<ServerQuestionResponse>('https://qt.organogram.app/questions', {
       headers: {
         Token: token
       }
     });
-    dispatch(setQuestions(Object.values(response.data)));
+    dispatch(setQuestions(Object.entries(response.data).map(([id, data]) => ({ id, ...data }))));
   } catch (error) {
-    const errorMessage = (error as Error).message; // Cast error to Error type to access message property
+    const errorMessage = (error as Error).message;
     dispatch(setError(errorMessage));
   } finally {
     dispatch(setLoading(false));
