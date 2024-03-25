@@ -9,6 +9,8 @@ import CreateQuestionForm from '@/component/CreateQuestionForm';
 import UpdateQuestionForm2 from '@/component/UpdateQuestionForm2';
 import { deleteQuestion } from '@/redux/thunks/deleteQuestionThunks';
 import ReactModal from 'react-modal';
+import CreateQuestionModal from '@/component/modals/CreateQuestionModal';
+
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -16,8 +18,9 @@ const Home = () => {
   const questions = useSelector((state: RootState) => state.questions.questions);
   const loading = useSelector((state: RootState) => state.questions.loading);
   const [editQuestionId, setEditQuestionId] = useState<string | null>(null); // Define type explicitly
-  
-const handleEditQuestion = (questionId: string) => {
+  const [isCreateQuestionClicked, setIsCreateQuestionClicked] = useState<boolean>(false);
+
+  const handleEditQuestion = (questionId: string) => {
     setEditQuestionId(questionId);
   };
 
@@ -27,6 +30,10 @@ const handleEditQuestion = (questionId: string) => {
 
   const handleCloseEditForm = () => {
     setEditQuestionId(null);
+  };
+
+  const handleCreateQuestionClick = () => {
+    setIsCreateQuestionClicked(true);
   };
 
   useEffect(() => {
@@ -45,7 +52,7 @@ const handleEditQuestion = (questionId: string) => {
             <p>Loading...</p>
           ) : (
             <div>
-              <CreateQuestionForm />
+              <button onClick={handleCreateQuestionClick}>Create Question</button>
               <h3>Questions Data:</h3>
               <ul>
                 {questions.map((question) => (
@@ -72,25 +79,20 @@ const handleEditQuestion = (questionId: string) => {
           )}
         </div>
       )}
-      {/* {editQuestionId && questions.find((q) => q.id === editQuestionId) && (
-        <UpdateQuestionForm2
-          questionId={editQuestionId}
-          initialQuestion={(questions.find((q) => q.id === editQuestionId) || {}).question || ''}
-          initialOptions={(questions.find((q) => q.id === editQuestionId) || {}).options || []}
-          onClose={handleCloseEditForm}
-        />
-      )} */}
       {editQuestionId && questions.find((q) => q.id === editQuestionId) && (
-<ReactModal isOpen={editQuestionId !== null} onRequestClose={handleCloseEditForm}>
-<UpdateQuestionForm2
-          questionId={editQuestionId}
-          initialQuestion={(questions.find((q) => q.id === editQuestionId) || {}).question || ''}
-          initialOptions={(questions.find((q) => q.id === editQuestionId) || {}).options || []}
-          onClose={handleCloseEditForm}
-        />
-</ReactModal>
+        <ReactModal isOpen={editQuestionId !== null} onRequestClose={handleCloseEditForm}>
+          <UpdateQuestionForm2
+            questionId={editQuestionId}
+            initialQuestion={(questions.find((q) => q.id === editQuestionId) || {}).question || ''}
+            initialOptions={(questions.find((q) => q.id === editQuestionId) || {}).options || []}
+            onClose={handleCloseEditForm}
+          />
+        </ReactModal>
       )}
 
+      <CreateQuestionModal isOpen={isCreateQuestionClicked} onRequestClose={() => setIsCreateQuestionClicked(false)}>
+        <CreateQuestionForm />
+      </CreateQuestionModal>
     </div>
   );
 };
