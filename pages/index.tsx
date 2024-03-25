@@ -119,6 +119,7 @@ import { fetchQuestions } from '../redux/thunks/questionsThunks';
 import { useAppDispatch } from '../redux/store/hooks';
 import CreateQuestionForm from '@/component/CreateQuestionForm';
 import UpdateQuestionForm2 from '@/component/UpdateQuestionForm2';
+import { deleteQuestion } from '@/redux/thunks/deleteQuestionThunks';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -132,6 +133,10 @@ console.log(questions, 'questions---')
 const handleEditQuestion = (questionId: string) => {
   console.log(questionId,'questionId====')
     setEditQuestionId(questionId);
+  };
+
+  const handleDelete = (questionId: string) => {
+    dispatch(deleteQuestion(questionId));
   };
 
   const handleCloseEditForm = () => {
@@ -177,6 +182,7 @@ const handleEditQuestion = (questionId: string) => {
                       ))}
                     </ul>
                     <button onClick={() => handleEditQuestion(question.id)}>Edit</button>
+                    <button onClick={() => handleDelete(question.id)}>Delete</button>
                   </div>
                 ))}
               </ul>
