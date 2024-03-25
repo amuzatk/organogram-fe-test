@@ -7,7 +7,6 @@ export const store = configureStore({
 //   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
 
-// export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -17,14 +16,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 export type AppDispatch = typeof store.dispatch;
 
-
-// // store/index.ts
-// import { configureStore } from '@reduxjs/toolkit';
-// import rootReducer from '../rootReducer';
-
-// export const store = configureStore({
-//   reducer: rootReducer,
-// });
-
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppDispatch = typeof store.dispatch;

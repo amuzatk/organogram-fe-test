@@ -22,6 +22,7 @@
     "rc-util": "^5.39.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-modal": "^3.16.1",
     "react-redux": "^9.1.0",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
@@ -32,6 +33,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-modal": "^3.16.3",
     "@types/react-redux": "^7.1.33",
     "typescript": "^5"
   }
