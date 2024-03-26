@@ -1,13 +1,22 @@
 // {
 //   "compilerOptions": {
 //     "lib": ["dom", "dom.iterable", "esnext"],
+//     "types": ["text-encoding"],
 //     "allowJs": true,
 //     "skipLibCheck": true,
 //     "strict": true,
 //     "noEmit": true,
 //     "esModuleInterop": true,
+
+//     "allowSyntheticDefaultImports": true,
+
 //     "module": "esnext",
-//     "moduleResolution": "bundler",
+//     // "moduleResolution": "bundler",
+
+//     "moduleResolution": "node",
+//     "sourceMap": true,
+//     "target": "esnext",
+
 //     "resolveJsonModule": true,
 //     "isolatedModules": true,
 //     "jsx": "preserve",
@@ -18,44 +27,40 @@
 //       }
 //     ],
 //     "paths": {
-//       "@/*": ["./src/*"]
+//       "@/*": ["./*"]
 //     }
 //   },
-//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.config.js"],
 //   "exclude": ["node_modules"]
 // }
+
+
 
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["text-encoding", "./types/fast-text-encoding.d.ts"], // Add the path to your custom type definitions
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-
     "allowSyntheticDefaultImports": true,
-
     "module": "esnext",
-    // "moduleResolution": "bundler",
-
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "esnext",
-
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{
+      "name": "next"
+    }],
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.config.js"],
   "exclude": ["node_modules"]
 }
