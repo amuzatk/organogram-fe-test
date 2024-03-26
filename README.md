@@ -79,3 +79,5 @@ Ensure to have a valid token for authentication before interacting with the API.
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
+
+Thank you.
