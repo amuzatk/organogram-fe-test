@@ -1,0 +1,25 @@
+
+// jest.setup.ts
+
+// Mock TextEncoder if it's not available in Node.js environment
+if (typeof TextEncoder === 'undefined') {
+    class TextEncoderMock {
+        encode(str: string): Uint8Array {
+            const buf = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) {
+                buf[i] = str.charCodeAt(i);
+            }
+            return buf;
+        }
+    }
+    global.TextEncoder = TextEncoderMock as any;
+}
+
+// Import Enzyme and Adapter at the top level
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+// Conditionally configure Enzyme only in browser environment
+if (typeof window !== 'undefined') {
+    Enzyme.configure({ adapter: new Adapter() });
+}
