@@ -4,64 +4,6 @@ import { HeadingText, ParagraphText } from '@/__style/global.style';
 import { StyledDiv, StyledFlex, StyledFlexItem, StyledGrid } from '@/__style/ui-block.style';
 import styled from 'styled-components';
 
-// interface QuizModalProps {
-//   question: string;
-//   options: string[];
-//   handleEditQuestion: () => void;
-//   handleDelete: () => void;
-// }
-
-// const QuizModal: React.FC<QuizModalProps> = ({ question, options, handleEditQuestion, handleDelete }) => {
-//   return (
-//     <StyledContainer
-//     cg="20px"
-//     // justify="enter"
-//     align="left"
-//     // gtc="minmax(200px, 300px) minmax(120px, 200px)  minmax(120px, 200px) 120px 100px  80px  80px 50px"
-//   >
-//       <StyledFlexItem>
-//         <HeadingText color='blue' fsize='18px' fw='400'>
-//           Q. {question}
-//         </HeadingText>
-//       </StyledFlexItem>
-
-//       <StyledOptions>
-//         <StyledDiv>
-//           {options.map((option, index) => (
-//             <StyledDiv
-            
-//              key={index}>
-//               <StyledFlex
-//               fDirection='row'
-//               justify='left'
-//               align='left'
-//               cg='10px'
-//               >
-//                 <input type="checkbox" value={option} />
-//             {option}
-//               </StyledFlex>
-//             </StyledDiv>
-//           ))}
-//           <StyledButtonContainer>
-//             <StyledBtnCon >
-//             <Button variant="primary" onClick={handleEditQuestion}>Edit</Button>
-//             </StyledBtnCon>
-//             <StyledBtnConDelete>
-//               <Button variant="danger" onClick={handleDelete}>Delete</Button>
-//             </StyledBtnConDelete>
-//           </StyledButtonContainer>
-//         </StyledDiv>
-//       </StyledOptions>
-//     </StyledContainer>
-//   );
-// };
-
-// export default QuizModal;
-
-
-// import React from 'react';
-// import { Button } from 'reactstrap';
-
 interface QuizModalProps {
   question: string;
   options: string[];

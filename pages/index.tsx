@@ -66,7 +66,7 @@ const Home = () => {
                 <StyledBtn onClick={handleCreateQuestionClick}>Create Question</StyledBtn>
                 <h3>Questions Data:</h3>
                 {questions.length === 0 ? (
-                  <p>Compose your questions and multi-choice options</p>
+                  <p>Compose your questions and multi-choice options OR refresh and login with amuzatk@gmail.com to access existing data</p>
                 ) : (
                   questions.map((question, index) => (
                     <QuizModal
