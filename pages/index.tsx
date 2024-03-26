@@ -6,12 +6,12 @@
 // import { useAppDispatch } from '../redux/store/hooks';
 // import CreateQuestionForm from '@/component/CreateQuestionForm';
 // import { deleteQuestion } from '@/redux/thunks/deleteQuestionThunks';
-// import ReactModal from 'react-modal';
 // import CreateQuestionModal from '@/component/modals/CreateQuestionModal';
 // import UpdateQuestionModal from '@/component/modals/EditQuestionModal';
-// import { Card, ListGroup, Button, Modal } from 'react-bootstrap';
-// import { StyledDiv, StyledFlex } from '@/__style/ui-block.style';
+// import { Button, Modal } from 'react-bootstrap';
+// import { StyledDiv, StyledFlex, StyledGrid } from '@/__style/ui-block.style';
 // import styled from 'styled-components';
+// import QuizModal from '@/component/QuizModal';
 
 // const Home = () => {
 //   const dispatch = useAppDispatch();
@@ -21,24 +21,23 @@
 //   const [editQuestionId, setEditQuestionId] = useState<string | null>(null);
 //   const [isCreateQuestionClicked, setIsCreateQuestionClicked] = useState<boolean>(false);
 //   const [deleteConfirmationId, setDeleteConfirmationId] = useState<string | null>(null);
+//   const [indexCounter, setIndexCounter] = useState(0);
 
 //   const handleEditQuestion = (questionId: string) => {
 //     setEditQuestionId(questionId);
 //   };
 
-//   // const handleDelete = (questionId: string) => {
-//   //   dispatch(deleteQuestion(questionId));
-//   // };
-
 //   const handleDelete = (questionId: string) => {
 //     setDeleteConfirmationId(questionId);
 //   };
+
 //   const handleConfirmDelete = () => {
 //     if (deleteConfirmationId) {
 //       dispatch(deleteQuestion(deleteConfirmationId));
 //       setDeleteConfirmationId(null);
 //     }
 //   };
+
 //   const handleCloseEditForm = () => {
 //     setEditQuestionId(null);
 //   };
@@ -55,7 +54,7 @@
 
 //   return (
 //     <StyledContainer>
-//       <div>
+//       <StyledMain>
 //         {!token ? (
 //           <TokenForm />
 //         ) : (
@@ -64,25 +63,19 @@
 //               <p>Loading...</p>
 //             ) : (
 //               <div>
-//                 <button onClick={handleCreateQuestionClick}>Create Question</button>
+//                 <StyledBtn onClick={handleCreateQuestionClick}>Create Question</StyledBtn>
 //                 <h3>Questions Data:</h3>
-//                 {questions.map((question) => (
-//                   <Card key={question.id} style={{ width: '18rem', margin: '1rem 0' }}>
-//                     <Card.Body>
-//                       <Card.Title>{question.question}</Card.Title>
-//                       <ListGroup variant="flush">
-//                         {question.options.map((option, optionIndex) => (
-//                           <ListGroup.Item key={optionIndex}>
-//                             <input type="checkbox" value={option} />
-//                             <span>{option}</span>
-//                           </ListGroup.Item>
-//                         ))}
-//                       </ListGroup>
-//                       <Button variant="primary" onClick={() => handleEditQuestion(question.id)}>Edit</Button>
-//                       <Button variant="danger" onClick={() => handleDelete(question.id)}>Delete</Button>
-//                     </Card.Body>
-//                   </Card>
-//                 ))}
+//                 {questions.map((question, index) => (
+
+//   <QuizModal
+//     key={question.id}
+//     question={question.question}
+//     options={question.options}
+//     handleEditQuestion={() => handleEditQuestion(question.id)}
+//     handleDelete={() => handleDelete(question.id)}
+//     questionNumber={index + indexCounter + 1}
+//   />
+// ))}
 //               </div>
 //             )}
 //           </div>
@@ -101,7 +94,6 @@
 //           <CreateQuestionForm />
 //         </CreateQuestionModal>
 
-
 //         <Modal show={!!deleteConfirmationId} onHide={() => setDeleteConfirmationId(null)}>
 //           <Modal.Header closeButton>
 //             <Modal.Title>Confirm Delete</Modal.Title>
@@ -116,7 +108,7 @@
 //             </Button>
 //           </Modal.Footer>
 //         </Modal>
-//       </div>
+//       </StyledMain>
 //     </StyledContainer>
 //   );
 // };
@@ -131,6 +123,18 @@
 // min-height: 100vh;
 // overflow-y: visible;
 // `;
+// const StyledMain = styled(StyledDiv)`
+// padding-top: 60px;
+// `;
+
+// const StyledBtn = styled.button`
+// border: 1px solid grey;
+// height: 50px;
+// padding: 15px;
+// font-size: 16px;
+// border-radius: 8px;
+// cursor: pointer;
+// `;
 
 
 
@@ -142,10 +146,9 @@ import { fetchQuestions } from '../redux/thunks/questionsThunks';
 import { useAppDispatch } from '../redux/store/hooks';
 import CreateQuestionForm from '@/component/CreateQuestionForm';
 import { deleteQuestion } from '@/redux/thunks/deleteQuestionThunks';
-import ReactModal from 'react-modal';
 import CreateQuestionModal from '@/component/modals/CreateQuestionModal';
 import UpdateQuestionModal from '@/component/modals/EditQuestionModal';
-import { Card, ListGroup, Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { StyledDiv, StyledFlex, StyledGrid } from '@/__style/ui-block.style';
 import styled from 'styled-components';
 import QuizModal from '@/component/QuizModal';
@@ -158,6 +161,7 @@ const Home = () => {
   const [editQuestionId, setEditQuestionId] = useState<string | null>(null);
   const [isCreateQuestionClicked, setIsCreateQuestionClicked] = useState<boolean>(false);
   const [deleteConfirmationId, setDeleteConfirmationId] = useState<string | null>(null);
+  const [indexCounter, setIndexCounter] = useState(0);
 
   const handleEditQuestion = (questionId: string) => {
     setEditQuestionId(questionId);
@@ -199,26 +203,22 @@ const Home = () => {
               <p>Loading...</p>
             ) : (
               <div>
-                <button onClick={handleCreateQuestionClick}>Create Question</button>
+                <StyledBtn onClick={handleCreateQuestionClick}>Create Question</StyledBtn>
                 <h3>Questions Data:</h3>
-                {questions.map((question) => (
-          //         <StyledContainer2
-          //         cg="20px"
-          //         justify="enter"
-          //         align="center"
-          //         // gtc="minmax(200px, 300px) minmax(120px, 200px)  minmax(120px, 200px) 120px 100px  80px  80px 50px"
-          // // gtc="repeat(auto-fit, minmax(400px, 1fr))"
-          // gtc="repeat(3, 1fr)"
-          //        >
-  <QuizModal
-    key={question.id}
-    question={question.question}
-    options={question.options}
-    handleEditQuestion={() => handleEditQuestion(question.id)}
-    handleDelete={() => handleDelete(question.id)}
-  />
-  // </StyledContainer2>
-))}
+                {questions.length === 0 ? (
+                  <p>Compose your questions and multi-choice options</p>
+                ) : (
+                  questions.map((question, index) => (
+                    <QuizModal
+                      key={question.id}
+                      question={question.question}
+                      options={question.options}
+                      handleEditQuestion={() => handleEditQuestion(question.id)}
+                      handleDelete={() => handleDelete(question.id)}
+                      questionNumber={index + indexCounter + 1}
+                    />
+                  ))
+                )}
               </div>
             )}
           </div>
@@ -257,6 +257,7 @@ const Home = () => {
 };
 
 export default Home;
+
 const StyledContainer = styled(StyledFlex)`
 background-color: lightblue;
 justify-content: center;
@@ -266,14 +267,15 @@ flex-direction: row;
 min-height: 100vh;
 overflow-y: visible;
 `;
-const StyledContainer2 = styled(StyledGrid)`
-  /* grid-template-columns: repeat(3, 1fr); */
-  padding: 13px 24px;
-  background: var(--background-primary_2);
-  /* position: relative; */
-  /* border-bottom: 1px solid var(--border); */
-`;
 const StyledMain = styled(StyledDiv)`
-border: 1px solid red;
 padding-top: 60px;
+`;
+
+const StyledBtn = styled.button`
+border: 1px solid grey;
+height: 50px;
+padding: 15px;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
 `;
