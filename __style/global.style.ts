@@ -10,18 +10,18 @@ export const GlobalStyle = createGlobalStyle`
   text-decoration: none; 
   cursor: pointer;
 }
-img{
+/* img{
   max-width:100%;
   height: auto;
-}
+} */
 
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
+} */
 
- body,
+ /* body,
  html{ 
   font-family: var(--Primary-font) ;
   margin: 0;
@@ -42,21 +42,21 @@ img{
   .blog-modal{
     z-index: 2000 !important;
   }
- }
-p,
+ } */
+/* p,
 a, span, div {
   font-family: var(--Primary-font) ;
 margin: 0;
-}
+} */
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h6 {
   font-family: var(--Primary-font) ;
   margin-bottom: 0;
-}
+} */
 `;
 
 export const HeadingText = styled.h2<{
