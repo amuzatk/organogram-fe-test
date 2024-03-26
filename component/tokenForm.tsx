@@ -107,7 +107,9 @@ const TokenForm = () => {
         Your email is required to be granted access to multi-choice questions:
       </StyledHeader>
       <StyledForm onSubmit={handleSubmit}>
+        <div>
         <input type="email" value={email} placeholder='Enter your email...' onChange={handleEmailChange} />
+        </div>
         <StyledButton type="submit" disabled={!isValidEmail}>
           Request
         </StyledButton>
@@ -145,17 +147,12 @@ const StyledForm = styled.form`
 `;
 
 const StyledButton = styled(Button)`
-  /* Add your button styles here */
 `;
 const StyledHeader = styled(HeadingText)`
 display: flex;
 text-align: center;
 
 @media only screen and (min-width: 768px) {
-  /* border: 1px solid green */
 padding: 20px 100px;
 }
 `;
-// @media only screen and (min-width:768px){
-
-// }
