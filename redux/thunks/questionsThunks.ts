@@ -1,4 +1,3 @@
-// redux/thunks/questionsThunks.ts
 import { AppThunk } from '../store';
 import axios from 'axios';
 import { setQuestions, setLoading, setError } from '../slices/questionSlice';

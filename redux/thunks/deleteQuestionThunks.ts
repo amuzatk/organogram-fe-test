@@ -1,4 +1,3 @@
-// redux/thunks/deleteQuestionThunks.ts
 import { AppThunk } from '../store';
 import axios from 'axios';
 import { setLoading, setError } from '../slices/questionSlice'; // Update this slice as needed

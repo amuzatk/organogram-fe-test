@@ -1,4 +1,3 @@
-// redux/thunks/createQuestionThunks.ts
 import { AppThunk } from '../store';
 import { addQuestion, setLoading, setError } from '../slices/createQuestionSlice';
 import { RootState } from '../store';

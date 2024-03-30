@@ -1,4 +1,3 @@
-// redux/thunks/tokenThunks.ts
 import { AppThunk } from '../store';
 import axios from 'axios';
 import { setToken } from '../slices/tokenSlice';

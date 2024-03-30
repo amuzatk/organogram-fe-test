@@ -54,7 +54,7 @@ const Home = () => {
 
   return (
     <StyledContainer>
-      <StyledMain>
+      <div>
         {!token ? (
           <TokenForm />
         ) : (
@@ -111,7 +111,7 @@ const Home = () => {
             </Button>
           </Modal.Footer>
         </Modal>
-      </StyledMain>
+      </div>
     </StyledContainer>
   );
 };
@@ -127,9 +127,9 @@ flex-direction: row;
 min-height: 100vh;
 overflow-y: visible;
 `;
-const StyledMain = styled(StyledDiv)`
-padding-top: 60px;
-`;
+// const div = styled(StyledDiv)`
+// padding-top: 60px;
+// `;
 
 const StyledBtn = styled.button`
 border: 1px solid grey;
